@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Diner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Operetta+12:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+    <video autoplay muted loop playsinline class="background-video" id="backgroundVideo">
+        <source src="1/snippet_diner.mp4" type="video/mp4">
+        </video>
+    
+    <div class="magazine-container">
+        <!-- Header -->
+        <header class="header">
+            <img src="images/logo.png" alt="Aurap Logo" class="brand-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <!-- Burger Menu Overlay -->
+        <div class="burger-overlay" id="burgerOverlay">
+            <nav class="burger-menu">
+                <ul class="burger-menu-list">
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="gallery.html?collection=diner">LE DINER</a></li>
+                    <li><a href="gallery.html?collection=malvie">MALVIE MAGAZINE</a></li>
+                    <li><a href="gallery.html?collection=madeinFrance">MADE IN FRANCE</a></li>
+                    <li><a href="gallery.html?collection=aura">::AURA::</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Gallery Content -->
+        <div class="gallery-container">
+            
+
+            <!-- Horizontal Gallery -->
+            <div class="horizontal-gallery">
+                <div class="gallery-track" id="galleryTrack">
+                    <!-- Images will be dynamically loaded here -->
+                </div>
+            </div>
+            <!-- Collection Info -->
+            <div class="collection-info-overlay">
+                <div class="collection-text" id="collectionText">
+                    <p>EXPLORE FF24<br>COLLECTION, EXPLORE THE<br>ARCHIVE, RGO23 STUDIO</p>
+                </div>
+                <h2 class="collection-number"></h2>
+            </div>
+            <!-- Credits -->
+            <div class="credits-container" id="creditsContainer">
+                <div class="credits-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="credits-content" id="creditsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Collection configurations
+        const collections = {
+            'diner': {
+                title: 'LE DINER',
+                directory: '1/',
+                video: '1/snippet_diner.mp4',
+                backgroundImage: null,
+                description: 'EXPLORE LE DINER<br>COLLECTION, PHOTOGRAPHY<br>& STYLING PORTFOLIO',
+                credits: '<strong>Photography:</strong> Clémence Martin, <strong>Stylist:</strong> Aura Violet, <strong>1er assistant stylist:</strong> Amélie Robelet, <strong>2ème assistant stylist:</strong> Mathilde Sizun, <strong>Make up:</strong> Sebastien Camp, Maël Fleuret, Louna Ponzio, <strong>Hair:</strong> Vasso Stathopoulou, Angèle Fumey, <strong>Models:</strong> Iris Wien, Kendrick Ewole, Simon-Pierre Pellegrin, Marie Luxi',
+                dimensions: {
+                    width: '400px',
+                    height: '300px',
+                    itemWidth: 270 // width + gap for scroll calculations
+                },
+                images: [
+                    'IMG_8531.JPG',
+                    'IMG_8532.JPG',
+                    'IMG_8533.JPG',
+                    'IMG_8535.JPG',
+                    'IMG_8536.JPG',
+                    'IMG_8537.JPG',
+                    'IMG_8538.JPG'
+                ]
+            },
+            'malvie': {
+                title: 'MALVIE MAGAZINE',
+                directory: '2/',
+                video: null,
+                backgroundImage: '2/background.jpg',
+                description: 'EXPLORE MALVIE<br>MAGAZINE EDITORIAL<br>FASHION PHOTOGRAPHY',
+                credits: '<strong>Photography:</strong> Zoe Yalden, <strong>Stylist:</strong> Aura Violet, <strong>Assistante stylist:</strong> Nariné Karakavorian, <strong>Make up:</strong> Sebastien Camp, <strong>Models:</strong> Lizzynmv',
+                dimensions: {
+                    width: '180px',
+                    height: '280px',
+                    itemWidth: 200 // width + gap for scroll calculations
+                },
+                images: [
+                    '14_Color_Pop_image2_DIGITAL_COVER_TEARSHEETd_MALVIE.jpg',
+                    '14_Color_Pop_image5-54d.jpg',
+                    '14_Color_Pop_image2-37a.jpg',
+                    '14_Color_Pop_image7-5df6.jpg',
+                    '14_Color_Pop_image8-57az.jpg',
+                    '14_Color_Pop_image8ze.jpg'
+                ]
+            },
+            'madeinFrance': {
+                title: 'MADE IN FRANCE',
+                directory: '3/',
+                video: '3/made_in_france.mp4',
+                backgroundImage: null,
+                description: 'EXPLORE MADE IN FRANCE<br>COLLECTION, FASHION<br>& STYLING PORTFOLIO',
+                credits: '<strong>Starring:</strong> Saãdia Bodenmann @babhouu, <strong>Head of editorial content:</strong> @Christiereine, <strong>Prod:</strong> @Crfilmsprod, <strong>Photographer:</strong> @ineschable, <strong>Assistant light:</strong> @julesgalinat, <strong>Model:</strong> Saãdia Bodenmann @babhouu / @thefaceparis, <strong>Stylist:</strong> @auravlt, <strong>Assistante stylist:</strong> @narine.karakavorian, <strong>Hair:</strong> @salowigs, <strong>Make up:</strong> @sandra.shades, <strong>Nails:</strong> Ola Bela @loovelynailsroom, <strong>Retouch:</strong> @avivanovaa_retoucher, <strong>Set design:</strong> @sandjillstudio, <strong>Assistant set design:</strong> @ghali.kbj, Dylan Manquat @victoire.sj, <strong>Assistante prod:</strong> @lolamp3_, <strong>Journaliste:</strong> @blanche_macia',
+                dimensions: {
+                    width: '270px',
+                    height: '380px',
+                    itemWidth: 240 // width + gap for scroll calculations
+                },
+                images: [
+                    // 'G.jpg',
+                    // 'H.jpg',
+                    // 'I.jpg',
+                    // 'IMG_8206.JPG',
+                    'K.jpg',
+                    'L.jpg',
+                    'PRSNA-MADE-IN-FRANCER.jpg',
+                    'PRSNA-MADE-IN-FRANCES.jpg',
+                    'PRSNA-MADE-IN-FRANCET.jpg',
+                    'N.jpg',
+                    'P.jpg',
+                    'G.jpg',
+                    'H.jpg',
+                    'I.jpg'
+                    // 'LOOK6.2V3.jpg'
+                ]
+            },
+            'aura': {
+                title: 'AURA',
+                directory: '4/',
+                video: null,
+                backgroundImage: 'images/background4.jpg',
+                description: 'EXPLORE AURA<br>COLLECTION, PORTRAIT<br>& FASHION PHOTOGRAPHY',
+                credits: '<strong>Photography:</strong> Charlotte Favré, <strong>Stylist:</strong> Aura Violet, <strong>Model:</strong> Kateryna Kaminska, <strong>Hair:</strong> Fanta Kadiakhe, <strong>Photographer assistant:</strong> Noriane Tinh Mocoeur, <strong>MUA:</strong> Manon Louaisil',
+                dimensions: {
+                    width: '300px',
+                    height: '400px',
+                    itemWidth: 320
+                },
+                images: [
+                    '2024_11_18_charlotte-favre_4309.jpg',
+                    '2024_11_18_charlotte-favre_4539.jpg',
+                    '2024_11_18_charlotte-favre_4558.jpg',
+                    '2024_11_18_charlotte-favre_4745.jpg',
+                    '2024_11_18_charlotte-favre_4874.jpg',
+                    '2024_11_18_charlotte-favre_4983.jpg',
+                    '2024_11_18_charlotte-favre_5165.jpg',
+                    '2024_11_18_charlotte-favre_5321.jpg',
+                    '2024_11_18_charlotte-favre_5351.jpg',
+                    'IMG_8206.JPG',
+                    'IMG_8209.JPG',
+                    'IMG_8227.JPG',
+                    'IMG_8228.JPG',
+                    'IMG_8232.JPG',
+                    'IMG_8233.JPG'
+                ]
+            }
+        };
+
+        // Get collection from URL parameter
+        function getCollectionFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const collection = urlParams.get('collection');
+            return collection && collections[collection] ? collection : 'diner'; // Default to diner
+        }
+
+        // Add these optimizations to your script section:
+
+        // 1. Debounce expensive operations
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 2. Cache DOM elements and calculations
+        let cachedRects = new Map();
+        let containerRect = null;
+
+        function cacheElementPositions() {
+            const items = document.querySelectorAll('.gallery-item-horizontal');
+            const gallery = document.querySelector('.horizontal-gallery');
+            
+            containerRect = gallery.parentElement.getBoundingClientRect();
+            cachedRects.clear();
+            
+            items.forEach((item, index) => {
+                cachedRects.set(item, {
+                    rect: item.getBoundingClientRect(),
+                    index: index
+                });
+            });
+        }
+
+        // 3. Optimized mouse enter handler
+        function optimizedMouseEnter(item) {
+            const cached = cachedRects.get(item);
+            if (!cached || !containerRect) return;
+            
+            const infoOverlay = document.querySelector('.collection-info-overlay');
+            const { rect, index } = cached;
+            
+            // Use cached positions instead of recalculating
+            infoOverlay.style.transform = `translate(${rect.left + rect.width / 2 - containerRect.left}px, ${rect.top - containerRect.top - 70}px)`;
+            
+            const originalItemsCount = document.querySelectorAll('.gallery-item-horizontal').length / 2;
+            infoOverlay.querySelector('.collection-number').textContent = 
+                `(${String((index % originalItemsCount) + 1).padStart(2, '0')})`;
+            
+            infoOverlay.classList.add('active');
+            
+            // Optimize class updates - only update visible items
+            requestAnimationFrame(() => {
+                const items = document.querySelectorAll('.gallery-item-horizontal');
+                items.forEach((other, i) => {
+                    if (Math.abs(i - index) <= 3) { // Only update nearby items
+                        if (i < index) {
+                            other.classList.add('shift-left');
+                        } else if (i > index) {
+                            other.classList.add('shift-right');
+                        }
+                    }
+                });
+            });
+        }
+
+        // 4. Throttled scroll handler
+        const throttledScrollHandler = (() => {
+            let rafId = null;
+            
+            return (e) => {
+                if (rafId) return;
+                
+                rafId = requestAnimationFrame(() => {
+                    const mouseX = e.clientX - e.currentTarget.getBoundingClientRect().left;
+                    const gallery = e.currentTarget;
+                    const edgeThreshold = 100;
+                    const scrollSpeed = 3; // Reduced for smoother performance
+                    
+                    clearInterval(scrollInterval);
+                    
+                    if (mouseX < edgeThreshold) {
+                        scrollInterval = setInterval(() => {
+                            gallery.scrollLeft -= scrollSpeed;
+                        }, 32); // Reduced frequency to 30fps
+                    } else if (mouseX > gallery.getBoundingClientRect().width - edgeThreshold) {
+                        scrollInterval = setInterval(() => {
+                            gallery.scrollLeft += scrollSpeed;
+                        }, 32);
+                    }
+                    
+                    rafId = null;
+                });
+            };
+        })();
+
+        // 5. Replace the initializeGallery function with this optimized version:
+        function initializeGallery(itemWidth) {
+            const track = document.querySelector('.gallery-track');
+            const gallery = document.querySelector('.horizontal-gallery');
+            const items = document.querySelectorAll('.gallery-item-horizontal');
+            const originalItemsCount = items.length / 2; // Half are duplicates
+            
+            let scrollInterval; // Declare the missing variable
+            
+            // Handle manual scrolling with infinite loop
+            gallery.addEventListener('scroll', () => {
+                const scrollLeft = gallery.scrollLeft;
+                const maxScroll = itemWidth * originalItemsCount;
+                
+                // Reset scroll position for infinite loop
+                if (scrollLeft >= maxScroll) {
+                    gallery.scrollLeft = 0;
+                } else if (scrollLeft <= 0 && gallery.scrollLeft !== 0) {
+                    gallery.scrollLeft = maxScroll - 1;
+                }
+                
+                // Update overlay position if it's currently active
+                const infoOverlay = document.querySelector('.collection-info-overlay');
+                if (infoOverlay.classList.contains('active')) {
+                    const hoveredItem = document.querySelector('.gallery-item-horizontal:hover');
+                    if (hoveredItem) {
+                        const rect = hoveredItem.getBoundingClientRect();
+                        const containerRect = gallery.parentElement.getBoundingClientRect();
+                        
+                        infoOverlay.style.left = (rect.left + rect.width / 2 - containerRect.left) + "px";
+                        infoOverlay.style.top = (rect.top - containerRect.top - 70) + "px";
+                    }
+                }
+            });
+            
+            // Smart spacing for browsers that don't support :has()
+            const infoOverlay = document.querySelector('.collection-info-overlay');
+
+            items.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    const rect = item.getBoundingClientRect();
+                    const containerRect = gallery.parentElement.getBoundingClientRect(); // gallery-container
+
+                    infoOverlay.style.position = "absolute";
+                    infoOverlay.style.left = (rect.left + rect.width / 2 - containerRect.left) + "px";
+                    infoOverlay.style.top = (rect.top - containerRect.top - 70) + "px";
+
+                    infoOverlay.querySelector('.collection-number').textContent =
+                        `(${String((index % originalItemsCount) + 1).padStart(2, '0')})`;
+
+                    infoOverlay.classList.add('active');
+
+                    // shift effect stays the same
+                    items.forEach((other, i) => {
+                        if (i < index) {
+                            other.classList.add('shift-left');
+                        } else if (i > index) {
+                            other.classList.add('shift-right');
+                        }
+                    });
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    infoOverlay.classList.remove('active');
+                    items.forEach(other => other.classList.remove('shift-left', 'shift-right'));
+                });
+            });
+
+            // Optimized mouse move handler for auto-scrolling
+            gallery.addEventListener("mousemove", (e) => {
+                const rect = gallery.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const galleryWidth = rect.width;
+
+                // Make scroll zones more progressive - increased from 100px to 200px
+                const edgeThreshold = 200; 
+                
+                // Create variable scroll speed based on distance from center
+                const centerX = galleryWidth / 2;
+                const distanceFromCenter = Math.abs(mouseX - centerX);
+                const maxDistance = galleryWidth / 2;
+                
+                // Calculate progressive scroll speed (1-6 range for smoother progression)
+                const normalizedDistance = Math.min(distanceFromCenter / (maxDistance - edgeThreshold), 1);
+                const progressiveSpeed = 1 + (normalizedDistance * 5); // Speed ranges from 1 to 6
+
+                clearInterval(scrollInterval);
+
+                if (mouseX < edgeThreshold) {
+                    // Scroll left with progressive speed
+                    scrollInterval = setInterval(() => {
+                        gallery.scrollLeft -= progressiveSpeed;
+                    }, 16); // Increased frequency to 60fps for smoother scrolling
+                } else if (mouseX > galleryWidth - edgeThreshold) {
+                    // Scroll right with progressive speed
+                    scrollInterval = setInterval(() => {
+                        gallery.scrollLeft += progressiveSpeed;
+                    }, 16);
+                }
+            });
+
+            gallery.addEventListener("mouseleave", () => {
+                clearInterval(scrollInterval);
+            });
+        }
+
+        // Optimized image loading for better LCP
+        function loadImagesWithPriority(collection) {
+            const galleryTrack = document.getElementById('galleryTrack');
+            const allImages = [...collection.images, ...collection.images]; // Duplicate for seamless scrolling
+        
+            allImages.forEach((imageName, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item-horizontal';
+                
+                // Apply custom dimensions
+                galleryItem.style.width = collection.dimensions.width;
+                galleryItem.style.height = collection.dimensions.height;
+                
+                const img = document.createElement('img');
+                
+                // Optimize loading for LCP
+                if (index < 3) {
+                    // Priority loading for first 3 images (visible on screen)
+                    img.loading = 'eager';
+                    img.fetchPriority = 'high';
+                } else {
+                    // Lazy load remaining images
+                    img.loading = 'lazy';
+                    img.fetchPriority = 'low';
+                }
+                
+                img.src = `${collection.directory}${imageName}`;
+                img.alt = `${collection.title} Image ${(index % collection.images.length) + 1}`;
+                img.className = 'gallery-image-horizontal';
+                
+                // Add size hints for better LCP
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                
+                galleryItem.appendChild(img);
+                galleryTrack.appendChild(galleryItem);
+            });
+        }
+
+        // Load and display the selected collection
+        function loadCollection(collectionKey) {
+            const collection = collections[collectionKey];
+            if (!collection) return;
+
+            // Update page title
+            document.title = collection.title;
+            document.getElementById('collectionText').innerHTML = `<p>${collection.description}</p>`;
+
+            // Update credits
+            const creditsContainer = document.getElementById('creditsContainer');
+            const creditsContent = document.getElementById('creditsContent');
+            if (collection.credits) {
+                creditsContent.innerHTML = collection.credits;
+                creditsContainer.classList.add('active');
+            } else {
+                creditsContent.innerHTML = '';
+                creditsContainer.classList.remove('active');
+            }
+
+            // Handle background video or image
+            const video = document.getElementById('backgroundVideo');
+            let backgroundImageDiv = document.getElementById('backgroundImage');
+            
+            if (collection.video) {
+                // Show video
+                video.style.display = 'block';
+                video.querySelector('source').src = collection.video;
+                video.load();
+                
+                // Hide background image if it exists
+                if (backgroundImageDiv) {
+                    backgroundImageDiv.style.display = 'none';
+                }
+            } else if (collection.backgroundImage) {
+                // Hide video
+                video.style.display = 'none';
+                
+                // Create or update background image
+                if (!backgroundImageDiv) {
+                    backgroundImageDiv = document.createElement('div');
+                    backgroundImageDiv.id = 'backgroundImage';
+                    backgroundImageDiv.className = 'background-image';
+                    document.body.insertBefore(backgroundImageDiv, document.body.firstChild);
+                }
+                
+                backgroundImageDiv.style.backgroundImage = `url('${collection.backgroundImage}')`;
+                backgroundImageDiv.style.display = 'block';
+                
+                // Simply ensure no transform is applied:
+                backgroundImageDiv.style.transform = 'none';
+            } else {
+                // Hide both video and background image
+                video.style.display = 'none';
+                if (backgroundImageDiv) {
+                    backgroundImageDiv.style.display = 'none';
+                }
+            }
+
+            // Clear existing gallery
+            const galleryTrack = document.getElementById('galleryTrack');
+            galleryTrack.innerHTML = '';
+
+            // Use optimized image loading
+            loadImagesWithPriority(collection);
+
+            // Initialize gallery functionality after a short delay for images to start loading
+            setTimeout(() => initializeGallery(collection.dimensions.itemWidth), 50);
+        }
+
+        // Load collection on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const collectionKey = getCollectionFromURL();
+            loadCollection(collectionKey);
+            
+            // Initialize burger menu functionality
+            initializeBurgerMenu();
+        });
+
+        // Burger menu functionality
+        function initializeBurgerMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const burgerOverlay = document.getElementById('burgerOverlay');
+            
+            if (menuToggle && burgerOverlay) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleBurgerMenu();
+                });
+                
+                // Close menu when clicking on overlay (but not on the menu itself)
+                burgerOverlay.addEventListener('click', (e) => {
+                    if (e.target === burgerOverlay) {
+                        closeBurgerMenu();
+                    }
+                });
+                
+                // Close menu with escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && burgerOverlay.classList.contains('active')) {
+                        closeBurgerMenu();
+                    }
+                });
+            }
+        }
+        
+        function toggleBurgerMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const burgerOverlay = document.getElementById('burgerOverlay');
+            
+            if (burgerOverlay.classList.contains('active')) {
+                closeBurgerMenu();
+            } else {
+                openBurgerMenu();
+            }
+        }
+        
+        function openBurgerMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const burgerOverlay = document.getElementById('burgerOverlay');
+            
+            burgerOverlay.classList.add('active');
+            menuToggle.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeBurgerMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const burgerOverlay = document.getElementById('burgerOverlay');
+            
+            burgerOverlay.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    </script>
+</body>
+</html>

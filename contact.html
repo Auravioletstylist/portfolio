@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Aura Violet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body class="contact-page">
+    <div class="magazine-container">
+        <!-- Header -->
+        <header class="header">
+            <img src="images/logo.png" alt="Aura Logo" class="brand-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <!-- Burger Menu Overlay -->
+        <div class="burger-overlay" id="burgerOverlay">
+            <nav class="burger-menu">
+                <ul class="burger-menu-list">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="gallery.html?collection=diner">LE DINER</a></li>
+                    <li><a href="gallery.html?collection=malvie">MALVIE MAGAZINE</a></li>
+                    <li><a href="gallery.html?collection=madeinFrance">MADE IN FRANCE</a></li>
+                    <li><a href="gallery.html?collection=aura">::AURA::</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Contact Content -->
+        <main class="contact-content">
+            <div class="contact-info-section">
+                <h2 class="contact-header">CONTACT ME</h1>
+                <h3 class="contact-name">AURA VIOLET</h3>
+                <h3 class="contact-title">Fashion Stylist – Art Director – Brand Consultant</h3>
+                <h3 class="contact-title">Paris</h3>
+                <h3 class="contact-title">
+                    <a href="mailto:auraviolet1@gmail.com" class="contact-link email-link">auraviolet1@gmail.com</a>
+                </h3>
+                <h3 class="contact-title">
+                    <a href="https://instagram.com/auravlt" target="_blank" class="contact-link instagram-icon-link" aria-label="Instagram">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.40s-.644-1.44-1.439-1.40z"/>
+                        </svg>
+                    </a>
+                </h3>
+            </div>
+        </main>
+    </div>
+
+    <script>
+    // Burger menu functionality
+    function initializeBurgerMenu() {
+        const menuToggle = document.getElementById('menuToggle');
+        const burgerOverlay = document.getElementById('burgerOverlay');
+        
+        if (menuToggle && burgerOverlay) {
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleBurgerMenu();
+            });
+            
+            // Close menu when clicking on overlay (but not on the menu itself)
+            burgerOverlay.addEventListener('click', (e) => {
+                if (e.target === burgerOverlay) {
+                    closeBurgerMenu();
+                }
+            });
+            
+            // Close menu with escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && burgerOverlay.classList.contains('active')) {
+                    closeBurgerMenu();
+                }
+            });
+        }
+    }
+    
+    function toggleBurgerMenu() {
+        const menuToggle = document.getElementById('menuToggle');
+        const burgerOverlay = document.getElementById('burgerOverlay');
+        
+        if (burgerOverlay.classList.contains('active')) {
+            closeBurgerMenu();
+        } else {
+            openBurgerMenu();
+        }
+    }
+    
+    function openBurgerMenu() {
+        const menuToggle = document.getElementById('menuToggle');
+        const burgerOverlay = document.getElementById('burgerOverlay');
+        
+        burgerOverlay.classList.add('active');
+        menuToggle.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+    
+    function closeBurgerMenu() {
+        const menuToggle = document.getElementById('menuToggle');
+        const burgerOverlay = document.getElementById('burgerOverlay');
+        
+        burgerOverlay.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Initialize burger menu when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeBurgerMenu();
+    });
+    </script>
+</body>
+</html>
