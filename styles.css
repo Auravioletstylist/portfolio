@@ -1424,3 +1424,19 @@ blockquote {
         height: 18px;
     }
 }
+
+/* Custom cursor using site logo */
+* {
+    cursor: url('images/logo1.png') 32 32, auto !important;
+}
+/* Preserve usability for form text fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="password"],
+textarea,
+[contenteditable="true"] {
+    cursor: text !important;
+}
