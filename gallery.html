@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="images/logo.png">
 </head>
-<body>
+<body class="gallery-page">
     <video autoplay muted loop playsinline class="background-video" id="backgroundVideo">
         <source src="1/snippet_diner.mp4" type="video/mp4">
         </video>
@@ -36,6 +36,8 @@
                     <li><a href="gallery.html?collection=malvie">MALVIE MAGAZINE</a></li>
                     <li><a href="gallery.html?collection=madeinFrance">MADE IN FRANCE</a></li>
                     <li><a href="gallery.html?collection=aura">::AURA::</a></li>
+                    <li><a href="gallery.html?collection=rugby">RUGBY</a></li>
+                    <li><a href="gallery.html?collection=love">22 SHADES OF LOVE</a></li>
                 </ul>
             </nav>
         </div>
@@ -93,7 +95,7 @@
                 ]
             },
             'malvie': {
-                title: 'MALVIE MAGAZINE',
+                title: 'ELEGANCE IN CONTRAST',
                 directory: '2/',
                 video: null,
                 backgroundImage: '2/background.jpg',
@@ -106,11 +108,16 @@
                 },
                 images: [
                     '14_Color_Pop_image2_DIGITAL_COVER_TEARSHEETd_MALVIE.jpg',
-                    '14_Color_Pop_image5-54d.jpg',
                     '14_Color_Pop_image2-37a.jpg',
+                    '14_Color_Pop_image5-54d.jpg',
                     '14_Color_Pop_image7-5df6.jpg',
                     '14_Color_Pop_image8-57az.jpg',
-                    '14_Color_Pop_image8ze.jpg'
+                    '3copy.jpg',
+                    'DSC04417.jpg',
+                    'DSC04769copy.jpg333.jpg',
+                    'DSC05229.jpg',
+                    'DSC05784copy.jpg',
+                    'DSC05793copy.jpg55555.jpg'
                 ]
             },
             'madeinFrance': {
@@ -147,7 +154,7 @@
                 title: 'AURA',
                 directory: '4/',
                 video: null,
-                backgroundImage: 'images/background4.jpg',
+                backgroundImage: 'images/auraBackground.jpg',
                 description: 'EXPLORE AURA<br>COLLECTION, PORTRAIT<br>& FASHION PHOTOGRAPHY',
                 credits: '<strong>Photography:</strong> Charlotte Favré, <strong>Stylist:</strong> Aura Violet, <strong>Model:</strong> Kateryna Kaminska, <strong>Hair:</strong> Fanta Kadiakhe, <strong>Photographer assistant:</strong> Noriane Tinh Mocoeur, <strong>MUA:</strong> Manon Louaisil',
                 dimensions: {
@@ -171,6 +178,43 @@
                     'IMG_8228.JPG',
                     'IMG_8232.JPG',
                     'IMG_8233.JPG'
+                ]
+            },
+            'rugby': {
+                title: 'RUGBY',
+                directory: '5/',
+                video: null,
+                backgroundImage: 'images/rugbyBackground.jpg',
+                description: 'EXPLORE RUGBY<br>COLLECTION, SPORT<br>& FASHION PHOTOGRAPHY',
+                credits: '<strong>Photographer:</strong> Aura Violet, <strong>Stylist:</strong> Aura Violet',
+                dimensions: {
+                    width: '350px',
+                    height: '450px',
+                    itemWidth: 370
+                },
+                images: [
+                    'CC.jpg',
+                    'cooool.jpg',
+                    'DD.jpg',
+                    'DSC03799.jpg',
+                    'DSC03846.jpg',
+                    'EE.jpg'
+                ]
+            },
+            'love': {
+                title: '22 SHADES OF LOVE',
+                directory: '6/',
+                video: null,
+                backgroundImage: 'images/rugbyBackground.jpg',
+                description: 'EXPLORE 22 SHADES OF LOVE<br>COLLECTION, FASHION<br>& STYLING PORTFOLIO',
+                credits: '<strong>Photographer:</strong> Aura Violet, <strong>Stylist:</strong> Aura Violet',
+                dimensions: {
+                    width: '300px',
+                    height: '400px',
+                    itemWidth: 320
+                },
+                images: [
+                    // Add image names here when they are added to the 6/ directory
                 ]
             }
         };
@@ -429,6 +473,9 @@
             const collection = collections[collectionKey];
             if (!collection) return;
 
+            // Add data attribute to body for collection-specific styling
+            document.body.setAttribute('data-collection', collectionKey);
+
             // Update page title
             document.title = collection.title;
             document.getElementById('collectionText').innerHTML = `<p>${collection.description}</p>`;
@@ -491,7 +538,14 @@
             loadImagesWithPriority(collection);
 
             // Initialize gallery functionality after a short delay for images to start loading
-            setTimeout(() => initializeGallery(collection.dimensions.itemWidth), 50);
+            setTimeout(() => {
+                initializeGallery(collection.dimensions.itemWidth);
+                
+                // Apply mobile-specific behavior after gallery is initialized
+                if (collectionKey === 'aura') {
+                    disableMobileTouchForAura();
+                }
+            }, 50);
         }
 
         // Load collection on page load
@@ -501,7 +555,80 @@
             
             // Initialize burger menu functionality
             initializeBurgerMenu();
+            
+            // Note: Mobile touch disabling for aura is now handled in loadCollection after gallery initialization
         });
+
+        // Function to disable card interactions but allow scrolling on mobile for aura collection
+        function disableMobileTouchForAura() {
+            // Check if device is mobile/tablet
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            
+            if (isMobile) {
+                console.log('Applying mobile-specific aura settings');
+                
+                // Force hide overlays immediately
+                const infoOverlay = document.querySelector('.collection-info-overlay');
+                const creditsContainer = document.querySelector('.credits-container');
+                
+                if (infoOverlay) {
+                    infoOverlay.style.display = 'none !important';
+                    infoOverlay.classList.remove('active');
+                }
+                
+                if (creditsContainer) {
+                    creditsContainer.style.display = 'none !important';
+                }
+                
+                // Disable auto-scrolling mouse behavior for mobile
+                const gallery = document.querySelector('.horizontal-gallery');
+                if (gallery) {
+                    // Remove mousemove and mouseleave listeners that cause auto-scrolling
+                    const newGallery = gallery.cloneNode(true);
+                    gallery.parentNode.replaceChild(newGallery, gallery);
+                    
+                    // Re-add only the scroll listener for infinite loop
+                    const track = newGallery.querySelector('.gallery-track');
+                    const items = newGallery.querySelectorAll('.gallery-item-horizontal');
+                    const originalItemsCount = items.length / 2;
+                    const itemWidth = 320; // aura collection item width
+                    
+                    newGallery.addEventListener('scroll', () => {
+                        const scrollLeft = newGallery.scrollLeft;
+                        const maxScroll = itemWidth * originalItemsCount;
+                        
+                        // Reset scroll position for infinite loop
+                        if (scrollLeft >= maxScroll) {
+                            newGallery.scrollLeft = 0;
+                        } else if (scrollLeft <= 0 && newGallery.scrollLeft !== 0) {
+                            newGallery.scrollLeft = maxScroll - 1;
+                        }
+                    });
+                }
+                
+                // Disable context menu on images only
+                const galleryItems = document.querySelectorAll('.gallery-item-horizontal');
+                galleryItems.forEach(item => {
+                    item.addEventListener('contextmenu', preventTouch, { passive: false });
+                });
+            }
+        }
+
+        // Prevent context menu function (only for long press prevention)
+        function preventTouch(e) {
+            if (e.type === 'contextmenu') {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }
+
+        // Helper function to clear scroll interval (if it exists)
+        function clearScrollInterval() {
+            if (typeof scrollInterval !== 'undefined') {
+                clearInterval(scrollInterval);
+            }
+        }
 
         // Burger menu functionality
         function initializeBurgerMenu() {

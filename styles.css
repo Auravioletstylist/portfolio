@@ -14,6 +14,12 @@ body {
     line-height: 1.5;
 }
 
+.gallery-page {
+    overflow: hidden; /* Prevent scroll bars */
+    height: 100vh;
+    width: 100vw;
+}
+
 .background-video {
     position: fixed;
     top: 0;
@@ -53,7 +59,7 @@ body {
     left: 0;
     width: 100%;
     height: 455px; /* Fixed height that should cover header + title section completely */
-    background: url('images/HeaderCover.jpg') no-repeat center top/cover;
+    background: url('images/HeaderCover2.jpg') no-repeat center top/cover;
     z-index: -1;
     display: none; /* Hide by default */
 }
@@ -86,7 +92,7 @@ body {
     height: 64px;   /* Adjust depending on your PNG size */
     width: auto;
     display: block;
-    filter: brightness(0) invert(1);  /* Make logo white */
+    /* filter: brightness(0) invert(1);  Make logo white */
 }
 
 .menu-toggle {
@@ -116,7 +122,7 @@ body {
     width: 100vw;       /* full width of viewport */
     margin-left: calc(-50vw + 50%); /* break out of container padding */
     height: 100vh;      /* full screen height */
-    background: url('images/MalvieCover.png') no-repeat center center/cover;
+    background: url('images/MalvieCover.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -239,6 +245,91 @@ body {
     opacity: 1;
 }
 
+/* Rugby Section */
+.rugby-section {
+    position: relative;
+    width: 100vw;       /* full width of viewport */
+    margin-left: calc(-50vw + 50%); /* break out of container padding */
+    height: 100vh;      /* full screen height */
+    background: url('images/rugbyCoverjpg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.rugby-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    transition: background 0.4s ease;
+}
+
+.rugby-section:hover::before {
+    background: rgba(0,0,0,0.1);
+}
+
+.rugby-section h2 {
+    position: relative;
+    font-size: 64px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.rugby-section:hover h2 {
+    opacity: 1;
+}
+
+/* Love Section */
+.love-section {
+    position: relative;
+    width: 100vw;       /* full width of viewport */
+    margin-left: calc(-50vw + 50%); /* break out of container padding */
+    height: 100vh;      /* full screen height */
+    background: url('images/loveCover.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.love-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    transition: background 0.4s ease;
+}
+
+.love-section:hover::before {
+    background: rgba(0,0,0,0.1);
+}
+
+.love-section h2 {
+    position: relative;
+    font-size: 64px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.love-section:hover h2 {
+    opacity: 1;
+}
 
 /* Title Section - Ensure it properly connects with the next section */
 .title-section {
@@ -983,6 +1074,56 @@ blockquote {
     z-index: -1; /* stay behind all content */
 }
 
+/* Specific styling for aura collection background - full coverage on mobile */
+.background-image[style*="auraBackground.jpg"] {
+    background-size: cover; /* Ensure full coverage for aura collection */
+}
+
+@media (max-width: 768px) {
+    .background-image[style*="auraBackground.jpg"] {
+        background-size: cover; /* Full coverage on mobile for aura collection */
+        background-position: center center;
+    }
+    
+    /* Allow scrolling but disable hover interactions on mobile for aura collection */
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal {
+        pointer-events: none; /* Disable hover and click events on cards */
+        cursor: default;
+    }
+    
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal:hover {
+        transform: none !important; /* Disable hover scale effect */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important; /* Keep original shadow */
+        z-index: 1 !important; /* Prevent z-index changes */
+    }
+    
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal:hover + .gallery-item-horizontal,
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal:has(+ .gallery-item-horizontal:hover),
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal.shift-left,
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal.shift-right {
+        transform: none !important; /* Disable shift effects */
+    }
+    
+    .gallery-page[data-collection="aura"] .gallery-item-horizontal:hover .gallery-image-horizontal {
+        transform: none !important; /* Disable image scaling on hover */
+    }
+    
+    .gallery-page[data-collection="aura"] .horizontal-gallery {
+        pointer-events: auto; /* Allow scrolling */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    .gallery-page[data-collection="aura"] .collection-info-overlay {
+        display: none !important; /* Hide info overlay on mobile */
+    }
+    
+    .gallery-page[data-collection="aura"] .credits-container {
+        display: none !important; /* Hide credits on mobile */
+    }
+}
+
 .background-image::after {
     content: "";
     position: absolute;
@@ -1156,7 +1297,7 @@ blockquote {
     left: 0;
     width: 100%;
     height: 100vh; /* Full viewport height */
-    background: url('images/HeaderCover.jpg') no-repeat center center/cover;
+    background: url('images/HeaderCover2.jpg') no-repeat center center/cover;
     z-index: -1;
     display: none;
 } 
@@ -1279,7 +1420,7 @@ blockquote {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: url('images/HeaderCover.jpg') no-repeat center center/cover;
+    background: url('images/HeaderCover2.jpg') no-repeat center center/cover;
     z-index: -1;
     display: block;
 }
@@ -1288,9 +1429,9 @@ blockquote {
     border-bottom: none;
 }
 
-.contact-page .brand-logo {
-    filter: brightness(0) invert(1);  /* Make logo white for contact page */
-}
+/* .contact-page .brand-logo { */
+    /*filter: brightness(0) invert(1);  */ /* Make logo white for contact page */
+/* } */
 
 .contact-page .menu-toggle span {
     background-color: #ffffff; /* Make burger menu white for contact page */
@@ -1427,7 +1568,7 @@ blockquote {
 
 /* Custom cursor using site logo */
 * {
-    cursor: url('images/logo1.png') 32 32, auto !important;
+    cursor: url('images/output-smallpngtools.png') 32 32, auto !important;
 }
 /* Preserve usability for form text fields */
 input[type="text"],
