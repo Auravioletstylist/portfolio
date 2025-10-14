@@ -45,6 +45,10 @@
         <!-- Gallery Content -->
         <div class="gallery-container">
             
+            <!-- St Val Images Section (for love collection) -->
+            <div class="st-val-container" id="stValContainer">
+                <!-- Images will be dynamically loaded here -->
+            </div>
 
             <!-- Horizontal Gallery -->
             <div class="horizontal-gallery">
@@ -52,19 +56,9 @@
                     <!-- Images will be dynamically loaded here -->
                 </div>
             </div>
-            <!-- Collection Info -->
-            <div class="collection-info-overlay">
-                <div class="collection-text" id="collectionText">
-                    <p>EXPLORE FF24<br>COLLECTION, EXPLORE THE<br>ARCHIVE, RGO23 STUDIO</p>
-                </div>
-                <h2 class="collection-number"></h2>
-            </div>
             <!-- Credits -->
             <div class="credits-container" id="creditsContainer">
-                <div class="credits-icon">
-                    <i class="fas fa-film"></i>
-                </div>
-                <div class="credits-content" id="creditsContent"></div>
+                <div class="floating-credits" id="creditsContent"></div>
             </div>
         </div>
     </div>
@@ -102,22 +96,26 @@
                 description: 'EXPLORE MALVIE<br>MAGAZINE EDITORIAL<br>FASHION PHOTOGRAPHY',
                 credits: '<strong>Photography:</strong> Zoe Yalden, <strong>Stylist:</strong> Aura Violet, <strong>Assistante stylist:</strong> Nariné Karakavorian, <strong>Make up:</strong> Sebastien Camp, <strong>Models:</strong> Lizzynmv',
                 dimensions: {
-                    width: '180px',
-                    height: '280px',
+                    width: '250px',
+                    height: '350px',
                     itemWidth: 200 // width + gap for scroll calculations
                 },
                 images: [
-                    '14_Color_Pop_image2_DIGITAL_COVER_TEARSHEETd_MALVIE.jpg',
-                    '14_Color_Pop_image2-37a.jpg',
+                        
                     '14_Color_Pop_image5-54d.jpg',
+                    '14_Color_Pop_image2_DIGITAL_COVER_TEARSHEETd_MALVIE.jpg',
                     '14_Color_Pop_image7-5df6.jpg',
-                    '14_Color_Pop_image8-57az.jpg',
+                    
+                    'DSC05229.jpg',
+                    'DSC04850.jpg',
+                    'DSC04789.jpg',
                     '3copy.jpg',
                     'DSC04417.jpg',
                     'DSC04769copy.jpg333.jpg',
-                    'DSC05229.jpg',
+                    '14_Color_Pop_image8-57az.jpg',
                     'DSC05784copy.jpg',
-                    'DSC05793copy.jpg55555.jpg'
+                    'DSC04877-2.jpg',
+                    
                 ]
             },
             'madeinFrance': {
@@ -133,21 +131,20 @@
                     itemWidth: 240 // width + gap for scroll calculations
                 },
                 images: [
-                    // 'G.jpg',
-                    // 'H.jpg',
-                    // 'I.jpg',
-                    // 'IMG_8206.JPG',
-                    'K.jpg',
+                    'I.jpg',
                     'L.jpg',
-                    'PRSNA-MADE-IN-FRANCER.jpg',
                     'PRSNA-MADE-IN-FRANCES.jpg',
-                    'PRSNA-MADE-IN-FRANCET.jpg',
-                    'N.jpg',
-                    'P.jpg',
                     'G.jpg',
                     'H.jpg',
-                    'I.jpg'
-                    // 'LOOK6.2V3.jpg'
+                    'LOOK2.1V3.jpg',
+                    'LOOK2.2V3.jpg',
+                    'LOOK2.3V3.jpg',
+                    'LOOK6.2V3.jpg',
+                    'N.jpg',
+                    'P.jpg',
+                    'PRSNA-MADE-IN-FRANCER.jpg',
+                    'PRSNA-MADE-IN-FRANCET.jpg',
+                    'K.jpg',
                 ]
             },
             'aura': {
@@ -184,37 +181,52 @@
                 title: 'RUGBY',
                 directory: '5/',
                 video: null,
-                backgroundImage: 'images/rugbyBackground.jpg',
+                backgroundImage: 'images/rugbyBackground1.jpg',
                 description: 'EXPLORE RUGBY<br>COLLECTION, SPORT<br>& FASHION PHOTOGRAPHY',
-                credits: '<strong>Photographer:</strong> Aura Violet, <strong>Stylist:</strong> Aura Violet',
+                credits: '<strong>Photographe:</strong> Thomas GAGLEWSKI @projetgirma, <strong>Modèle:</strong> Marie Ehrengardt @mariehren, <strong>Styliste:</strong> Aura Violet @auravlt, <strong>Assistante styliste:</strong> Noémie Dajon @nodjn & Lola Marteau @lolamp3_, <strong>Hair & Makeup:</strong> Aya Aradia @aya.aradia, <strong>Journaliste:</strong> François-Xavier SAVATXATH TRANG, <strong>Fashion by:</strong> @leodltr @lappartpr @albatroz.paris @Y3 @Radical PR @acme.ir',
                 dimensions: {
                     width: '350px',
                     height: '450px',
                     itemWidth: 370
                 },
                 images: [
-                    'CC.jpg',
-                    'cooool.jpg',
-                    'DD.jpg',
-                    'DSC03799.jpg',
                     'DSC03846.jpg',
-                    'EE.jpg'
+                    'DD.jpg',
+                    'CC.jpg',
+
+                    'EE.jpg',
+                    'cooool.jpg',
+
                 ]
             },
             'love': {
                 title: '22 SHADES OF LOVE',
                 directory: '6/',
                 video: null,
-                backgroundImage: 'images/rugbyBackground.jpg',
+                backgroundImage: 'images/22background.jpg',
                 description: 'EXPLORE 22 SHADES OF LOVE<br>COLLECTION, FASHION<br>& STYLING PORTFOLIO',
-                credits: '<strong>Photographer:</strong> Aura Violet, <strong>Stylist:</strong> Aura Violet',
+                credits: '<strong>Head of editorial content:</strong> @Christiereine, <strong>Photographer:</strong> @ella.mrmt, <strong>Casting director:</strong> @eme_emmanuelle, <strong>Models:</strong> @estherrollande @saragrber @atassel @vinhe.art @darina_su @phoenixrodann @evelinagms @lyukasse @cybernewboy @alenka.ivanova2404, <strong>Stylist:</strong> @auravlt, <strong>Assistants stylist:</strong> @mathilde_sizun, @imagede_reine, <strong>Hair:</strong> @fantahairstylee @juliette_studer, <strong>Make up:</strong> @_sandra.ls_ @mariefmua @mag_about_mua, <strong>Assistante prod:</strong> @emmaalillo, <strong>Prod:</strong> @Crfilmsprod',
                 dimensions: {
                     width: '300px',
-                    height: '400px',
-                    itemWidth: 320
+                    height: '350px',
+                    itemWidth: 220
                 },
                 images: [
-                    // Add image names here when they are added to the 6/ directory
+                    '2.jpg',
+                    '3.jpg',
+                    '5.jpg',
+                    '6.jpg',
+                    '7.jpg',
+                    '9 (1).jpg',
+                    '10.jpg',
+                    '11.jpg',
+                    '12 (1).jpg',
+                    '13.jpg',
+                    '14.jpg',
+                    '15.jpg',
+                    '16.jpg',
+                    '17.jpg',
+                    '18.jpg'
                 ]
             }
         };
@@ -241,56 +253,7 @@
             };
         }
 
-        // 2. Cache DOM elements and calculations
-        let cachedRects = new Map();
-        let containerRect = null;
-
-        function cacheElementPositions() {
-            const items = document.querySelectorAll('.gallery-item-horizontal');
-            const gallery = document.querySelector('.horizontal-gallery');
-            
-            containerRect = gallery.parentElement.getBoundingClientRect();
-            cachedRects.clear();
-            
-            items.forEach((item, index) => {
-                cachedRects.set(item, {
-                    rect: item.getBoundingClientRect(),
-                    index: index
-                });
-            });
-        }
-
-        // 3. Optimized mouse enter handler
-        function optimizedMouseEnter(item) {
-            const cached = cachedRects.get(item);
-            if (!cached || !containerRect) return;
-            
-            const infoOverlay = document.querySelector('.collection-info-overlay');
-            const { rect, index } = cached;
-            
-            // Use cached positions instead of recalculating
-            infoOverlay.style.transform = `translate(${rect.left + rect.width / 2 - containerRect.left}px, ${rect.top - containerRect.top - 70}px)`;
-            
-            const originalItemsCount = document.querySelectorAll('.gallery-item-horizontal').length / 2;
-            infoOverlay.querySelector('.collection-number').textContent = 
-                `(${String((index % originalItemsCount) + 1).padStart(2, '0')})`;
-            
-            infoOverlay.classList.add('active');
-            
-            // Optimize class updates - only update visible items
-            requestAnimationFrame(() => {
-                const items = document.querySelectorAll('.gallery-item-horizontal');
-                items.forEach((other, i) => {
-                    if (Math.abs(i - index) <= 3) { // Only update nearby items
-                        if (i < index) {
-                            other.classList.add('shift-left');
-                        } else if (i > index) {
-                            other.classList.add('shift-right');
-                        }
-                    }
-                });
-            });
-        }
+        // 2. (Removed) Overlay legend logic and related caching
 
         // 4. Throttled scroll handler
         const throttledScrollHandler = (() => {
@@ -342,39 +305,11 @@
                 } else if (scrollLeft <= 0 && gallery.scrollLeft !== 0) {
                     gallery.scrollLeft = maxScroll - 1;
                 }
-                
-                // Update overlay position if it's currently active
-                const infoOverlay = document.querySelector('.collection-info-overlay');
-                if (infoOverlay.classList.contains('active')) {
-                    const hoveredItem = document.querySelector('.gallery-item-horizontal:hover');
-                    if (hoveredItem) {
-                        const rect = hoveredItem.getBoundingClientRect();
-                        const containerRect = gallery.parentElement.getBoundingClientRect();
-                        
-                        infoOverlay.style.left = (rect.left + rect.width / 2 - containerRect.left) + "px";
-                        infoOverlay.style.top = (rect.top - containerRect.top - 70) + "px";
-                    }
-                }
             });
             
-            // Smart spacing for browsers that don't support :has()
-            const infoOverlay = document.querySelector('.collection-info-overlay');
-
             items.forEach((item, index) => {
                 item.addEventListener('mouseenter', () => {
-                    const rect = item.getBoundingClientRect();
-                    const containerRect = gallery.parentElement.getBoundingClientRect(); // gallery-container
-
-                    infoOverlay.style.position = "absolute";
-                    infoOverlay.style.left = (rect.left + rect.width / 2 - containerRect.left) + "px";
-                    infoOverlay.style.top = (rect.top - containerRect.top - 70) + "px";
-
-                    infoOverlay.querySelector('.collection-number').textContent =
-                        `(${String((index % originalItemsCount) + 1).padStart(2, '0')})`;
-
-                    infoOverlay.classList.add('active');
-
-                    // shift effect stays the same
+                    // shift effect only
                     items.forEach((other, i) => {
                         if (i < index) {
                             other.classList.add('shift-left');
@@ -385,7 +320,6 @@
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    infoOverlay.classList.remove('active');
                     items.forEach(other => other.classList.remove('shift-left', 'shift-right'));
                 });
             });
@@ -478,13 +412,15 @@
 
             // Update page title
             document.title = collection.title;
-            document.getElementById('collectionText').innerHTML = `<p>${collection.description}</p>`;
+            // Removed overlay legend update
 
             // Update credits
             const creditsContainer = document.getElementById('creditsContainer');
             const creditsContent = document.getElementById('creditsContent');
             if (collection.credits) {
-                creditsContent.innerHTML = collection.credits;
+                // Format credits for movie-style scrolling
+                const formattedCredits = formatCreditsForScrolling(collection.credits);
+                creditsContent.innerHTML = formattedCredits;
                 creditsContainer.classList.add('active');
             } else {
                 creditsContent.innerHTML = '';
@@ -534,6 +470,25 @@
             const galleryTrack = document.getElementById('galleryTrack');
             galleryTrack.innerHTML = '';
 
+            // Handle st_val images for love collection
+            const stValContainer = document.getElementById('stValContainer');
+            if (collectionKey === 'love') {
+                // Show and load st_val images
+                stValContainer.style.display = 'flex';
+                stValContainer.innerHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    const img = document.createElement('img');
+                    img.src = `6/st_val_${i}_compressed.webp`;
+                    img.alt = `St Valentine ${i}`;
+                    img.className = 'st-val-image';
+                    stValContainer.appendChild(img);
+                }
+            } else {
+                // Hide st_val container for other collections
+                stValContainer.style.display = 'none';
+                stValContainer.innerHTML = '';
+            }
+
             // Use optimized image loading
             loadImagesWithPriority(collection);
 
@@ -567,14 +522,7 @@
             if (isMobile) {
                 console.log('Applying mobile-specific aura settings');
                 
-                // Force hide overlays immediately
-                const infoOverlay = document.querySelector('.collection-info-overlay');
                 const creditsContainer = document.querySelector('.credits-container');
-                
-                if (infoOverlay) {
-                    infoOverlay.style.display = 'none !important';
-                    infoOverlay.classList.remove('active');
-                }
                 
                 if (creditsContainer) {
                     creditsContainer.style.display = 'none !important';
@@ -621,6 +569,22 @@
                 e.stopPropagation();
                 return false;
             }
+        }
+
+        // Format credits for movie-style scrolling
+        function formatCreditsForScrolling(creditsHtml) {
+            // Convert HTML to text and clean up
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = creditsHtml;
+            
+            // Extract text content and split by comma or strong tags
+            const text = tempDiv.textContent || tempDiv.innerText || '';
+            
+            // Split by commas and clean up each part
+            const parts = text.split(',').map(part => part.trim()).filter(part => part.length > 0);
+            
+            // Join with bullet separators for movie credits style
+            return parts.join(' • ');
         }
 
         // Helper function to clear scroll interval (if it exists)
