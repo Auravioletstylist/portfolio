@@ -31,13 +31,15 @@
         <div class="burger-overlay" id="burgerOverlay">
             <nav class="burger-menu">
                 <ul class="burger-menu-list">
+                    <li><a href="index.html">HOME</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
-                    <li><a href="gallery.html?collection=diner">LE DINER</a></li>
-                    <li><a href="gallery.html?collection=malvie">MALVIE MAGAZINE</a></li>
-                    <li><a href="gallery.html?collection=madeinFrance">MADE IN FRANCE</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
                     <li><a href="gallery.html?collection=aura">::AURA::</a></li>
-                    <li><a href="gallery.html?collection=rugby">RUGBY</a></li>
+                    <li><a href="gallery.html?collection=diner">LE DINER</a></li>
                     <li><a href="gallery.html?collection=love">22 SHADES OF LOVE</a></li>
+                    <li><a href="gallery.html?collection=madeinFrance">MADE IN FRANCE</a></li>
+                    <li><a href="gallery.html?collection=malvie">MALVIE MAGAZINE</a></li>
+                    <li><a href="gallery.html?collection=rugby">RUGBY</a></li>
                 </ul>
             </nav>
         </div>
@@ -63,6 +65,17 @@
         </div>
     </div>
 
+    <!-- Credits Overlay -->
+    <div class="credits-overlay" id="creditsOverlay">
+        <div class="credits-overlay-content">
+            <div class="credits-overlay-header">
+                <div class="credits-overlay-title">Credits</div>
+                <button class="credits-overlay-close" onclick="closeCreditsOverlay()">&times;</button>
+            </div>
+            <div class="credits-overlay-text" id="creditsOverlayText"></div>
+        </div>
+    </div>
+
     <script>
         // Collection configurations
         const collections = {
@@ -73,6 +86,15 @@
                 backgroundImage: null,
                 description: 'EXPLORE LE DINER<br>COLLECTION, PHOTOGRAPHY<br>& STYLING PORTFOLIO',
                 credits: '<strong>Photography:</strong> Clémence Martin, <strong>Stylist:</strong> Aura Violet, <strong>1er assistant stylist:</strong> Amélie Robelet, <strong>2ème assistant stylist:</strong> Mathilde Sizun, <strong>Make up:</strong> Sebastien Camp, Maël Fleuret, Louna Ponzio, <strong>Hair:</strong> Vasso Stathopoulou, Angèle Fumey, <strong>Models:</strong> Iris Wien, Kendrick Ewole, Simon-Pierre Pellegrin, Marie Luxi',
+                creditsData: [
+                    { role: 'Photography', people: ['Clémence Martin'] },
+                    { role: 'Stylist', people: ['Aura Violet'] },
+                    { role: '1er assistant stylist', people: ['Amélie Robelet'] },
+                    { role: '2ème assistant stylist', people: ['Mathilde Sizun'] },
+                    { role: 'Make up', people: ['Sebastien Camp', 'Maël Fleuret', 'Louna Ponzio'] },
+                    { role: 'Hair', people: ['Vasso Stathopoulou', 'Angèle Fumey'] },
+                    { role: 'Models', people: ['Iris Wien', 'Kendrick Ewole', 'Simon-Pierre Pellegrin', 'Marie Luxi'] },
+                ],
                 dimensions: {
                     width: '400px',
                     height: '300px',
@@ -95,6 +117,13 @@
                 backgroundImage: '2/background.jpg',
                 description: 'EXPLORE MALVIE<br>MAGAZINE EDITORIAL<br>FASHION PHOTOGRAPHY',
                 credits: '<strong>Photography:</strong> Zoe Yalden, <strong>Stylist:</strong> Aura Violet, <strong>Assistante stylist:</strong> Nariné Karakavorian, <strong>Make up:</strong> Sebastien Camp, <strong>Models:</strong> Lizzynmv',
+                creditsData: [
+                    { role: 'Photography', people: ['Zoe Yalden'] },
+                    { role: 'Stylist', people: ['Aura Violet'] },
+                    { role: 'Assistante stylist', people: ['Nariné Karakavorian'] },
+                    { role: 'Make up', people: ['Sebastien Camp'] },
+                    { role: 'Models', people: ['Lizzynmv'] },
+                ],
                 dimensions: {
                     width: '250px',
                     height: '350px',
@@ -105,13 +134,15 @@
                     '14_Color_Pop_image5-54d.jpg',
                     '14_Color_Pop_image2_DIGITAL_COVER_TEARSHEETd_MALVIE.jpg',
                     '14_Color_Pop_image7-5df6.jpg',
-                    
-                    'DSC05229.jpg',
-                    'DSC04850.jpg',
-                    'DSC04789.jpg',
-                    '3copy.jpg',
-                    'DSC04417.jpg',
                     'DSC04769copy.jpg333.jpg',
+                    'DSC05229.jpg',
+                    '3copy.jpg',
+
+                    'DSC04850.jpg',
+                    
+                    'DSC04789.jpg',
+                    'DSC04417.jpg',
+                    
                     '14_Color_Pop_image8-57az.jpg',
                     'DSC05784copy.jpg',
                     'DSC04877-2.jpg',
@@ -125,6 +156,24 @@
                 backgroundImage: null,
                 description: 'EXPLORE MADE IN FRANCE<br>COLLECTION, FASHION<br>& STYLING PORTFOLIO',
                 credits: '<strong>Starring:</strong> Saãdia Bodenmann @babhouu, <strong>Head of editorial content:</strong> @Christiereine, <strong>Prod:</strong> @Crfilmsprod, <strong>Photographer:</strong> @ineschable, <strong>Assistant light:</strong> @julesgalinat, <strong>Model:</strong> Saãdia Bodenmann @babhouu / @thefaceparis, <strong>Stylist:</strong> @auravlt, <strong>Assistante stylist:</strong> @narine.karakavorian, <strong>Hair:</strong> @salowigs, <strong>Make up:</strong> @sandra.shades, <strong>Nails:</strong> Ola Bela @loovelynailsroom, <strong>Retouch:</strong> @avivanovaa_retoucher, <strong>Set design:</strong> @sandjillstudio, <strong>Assistant set design:</strong> @ghali.kbj, Dylan Manquat @victoire.sj, <strong>Assistante prod:</strong> @lolamp3_, <strong>Journaliste:</strong> @blanche_macia',
+                creditsData: [
+                    { role: 'Starring', people: ['Saãdia Bodenmann @babhouu'] },
+                    { role: 'Head of editorial content', people: ['@Christiereine'] },
+                    { role: 'Prod', people: ['@Crfilmsprod'] },
+                    { role: 'Photographer', people: ['@ineschable'] },
+                    { role: 'Assistant light', people: ['@julesgalinat'] },
+                    { role: 'Model', people: ['Saãdia Bodenmann @babhouu / @thefaceparis'] },
+                    { role: 'Stylist', people: ['@auravlt'] },
+                    { role: 'Assistante stylist', people: ['@narine.karakavorian'] },
+                    { role: 'Hair', people: ['@salowigs'] },
+                    { role: 'Make up', people: ['@sandra.shades'] },
+                    { role: 'Nails', people: ['Ola Bela @loovelynailsroom'] },
+                    { role: 'Retouch', people: ['@avivanovaa_retoucher'] },
+                    { role: 'Set design', people: ['@sandjillstudio'] },
+                    { role: 'Assistant set design', people: ['@ghali.kbj', 'Dylan Manquat @victoire.sj'] },
+                    { role: 'Assistante prod', people: ['@lolamp3_'] },
+                    { role: 'Journaliste', people: ['@blanche_macia'] },
+                ],
                 dimensions: {
                     width: '270px',
                     height: '380px',
@@ -134,10 +183,11 @@
                     'I.jpg',
                     'L.jpg',
                     'PRSNA-MADE-IN-FRANCES.jpg',
-                    'G.jpg',
                     'H.jpg',
                     'LOOK2.1V3.jpg',
                     'LOOK2.2V3.jpg',
+                    'G.jpg',
+
                     'LOOK2.3V3.jpg',
                     'LOOK6.2V3.jpg',
                     'N.jpg',
@@ -154,6 +204,14 @@
                 backgroundImage: 'images/auraBackground.jpg',
                 description: 'EXPLORE AURA<br>COLLECTION, PORTRAIT<br>& FASHION PHOTOGRAPHY',
                 credits: '<strong>Photography:</strong> Charlotte Favré, <strong>Stylist:</strong> Aura Violet, <strong>Model:</strong> Kateryna Kaminska, <strong>Hair:</strong> Fanta Kadiakhe, <strong>Photographer assistant:</strong> Noriane Tinh Mocoeur, <strong>MUA:</strong> Manon Louaisil',
+                creditsData: [
+                    { role: 'Photography', people: ['Charlotte Favré'] },
+                    { role: 'Stylist', people: ['Aura Violet'] },
+                    { role: 'Model', people: ['Kateryna Kaminska'] },
+                    { role: 'Hair', people: ['Fanta Kadiakhe'] },
+                    { role: 'Photographer assistant', people: ['Noriane Tinh Mocoeur'] },
+                    { role: 'MUA', people: ['Manon Louaisil'] },
+                ],
                 dimensions: {
                     width: '300px',
                     height: '400px',
@@ -184,6 +242,15 @@
                 backgroundImage: 'images/rugbyBackground1.jpg',
                 description: 'EXPLORE RUGBY<br>COLLECTION, SPORT<br>& FASHION PHOTOGRAPHY',
                 credits: '<strong>Photographe:</strong> Thomas GAGLEWSKI @projetgirma, <strong>Modèle:</strong> Marie Ehrengardt @mariehren, <strong>Styliste:</strong> Aura Violet @auravlt, <strong>Assistante styliste:</strong> Noémie Dajon @nodjn & Lola Marteau @lolamp3_, <strong>Hair & Makeup:</strong> Aya Aradia @aya.aradia, <strong>Journaliste:</strong> François-Xavier SAVATXATH TRANG, <strong>Fashion by:</strong> @leodltr @lappartpr @albatroz.paris @Y3 @Radical PR @acme.ir',
+                creditsData: [
+                    { role: 'Photographe', people: ['Thomas GAGLEWSKI @projetgirma'] },
+                    { role: 'Modèle', people: ['Marie Ehrengardt @mariehren'] },
+                    { role: 'Styliste', people: ['Aura Violet @auravlt'] },
+                    { role: 'Assistante styliste', people: ['Noémie Dajon @nodjn', 'Lola Marteau @lolamp3_'] },
+                    { role: 'Hair & Makeup', people: ['Aya Aradia @aya.aradia'] },
+                    { role: 'Journaliste', people: ['François-Xavier SAVATXATH TRANG'] },
+                    { role: 'Fashion by', people: ['@leodltr', '@lappartpr', '@albatroz.paris', '@Y3', '@Radical PR', '@acme.ir'] },
+                ],
                 dimensions: {
                     width: '350px',
                     height: '450px',
@@ -206,6 +273,18 @@
                 backgroundImage: 'images/22background.jpg',
                 description: 'EXPLORE 22 SHADES OF LOVE<br>COLLECTION, FASHION<br>& STYLING PORTFOLIO',
                 credits: '<strong>Head of editorial content:</strong> @Christiereine, <strong>Photographer:</strong> @ella.mrmt, <strong>Casting director:</strong> @eme_emmanuelle, <strong>Models:</strong> @estherrollande @saragrber @atassel @vinhe.art @darina_su @phoenixrodann @evelinagms @lyukasse @cybernewboy @alenka.ivanova2404, <strong>Stylist:</strong> @auravlt, <strong>Assistants stylist:</strong> @mathilde_sizun, @imagede_reine, <strong>Hair:</strong> @fantahairstylee @juliette_studer, <strong>Make up:</strong> @_sandra.ls_ @mariefmua @mag_about_mua, <strong>Assistante prod:</strong> @emmaalillo, <strong>Prod:</strong> @Crfilmsprod',
+                creditsData: [
+                    { role: 'Head of editorial content', people: ['@Christiereine'] },
+                    { role: 'Photographer', people: ['@ella.mrmt'] },
+                    { role: 'Casting director', people: ['@eme_emmanuelle'] },
+                    { role: 'Models', people: ['@estherrollande @saragrber @atassel @vinhe.art @darina_su @phoenixrodann @evelinagms @lyukasse @cybernewboy @alenka.ivanova2404'] },
+                    { role: 'Stylist', people: ['@auravlt'] },
+                    { role: 'Assistants stylist', people: ['@mathilde_sizun', '@imagede_reine'] },
+                    { role: 'Hair', people: ['@fantahairstylee', '@juliette_studer'] },
+                    { role: 'Make up', people: ['@_sandra.ls_', '@mariefmua', '@mag_about_mua'] },
+                    { role: 'Assistante prod', people: ['@emmaalillo'] },
+                    { role: 'Prod', people: ['@Crfilmsprod'] },
+                ],
                 dimensions: {
                     width: '300px',
                     height: '350px',
@@ -366,6 +445,7 @@
         function loadImagesWithPriority(collection) {
             const galleryTrack = document.getElementById('galleryTrack');
             const allImages = [...collection.images, ...collection.images]; // Duplicate for seamless scrolling
+            const originalCount = collection.images.length;
         
             allImages.forEach((imageName, index) => {
                 const galleryItem = document.createElement('div');
@@ -378,8 +458,13 @@
                 const img = document.createElement('img');
                 
                 // Optimize loading for LCP
-                if (index < 3) {
-                    // Priority loading for first 3 images (visible on screen)
+                // Load first 3 images AND last 3 images of the first set with high priority
+                // since they're visible in the initial viewport
+                const isFirstFew = index < 3;
+                const isLastFew = index >= (originalCount - 3) && index < originalCount;
+                
+                if (isFirstFew || isLastFew) {
+                    // Priority loading for visible images
                     img.loading = 'eager';
                     img.fetchPriority = 'high';
                 } else {
@@ -417,9 +502,8 @@
             // Update credits
             const creditsContainer = document.getElementById('creditsContainer');
             const creditsContent = document.getElementById('creditsContent');
-            if (collection.credits) {
-                // Format credits for movie-style scrolling
-                const formattedCredits = formatCreditsForScrolling(collection.credits);
+            if (collection.credits || collection.creditsData) {
+                const formattedCredits = formatInlineCredits(collection, collectionKey);
                 creditsContent.innerHTML = formattedCredits;
                 creditsContainer.classList.add('active');
             } else {
@@ -496,10 +580,8 @@
             setTimeout(() => {
                 initializeGallery(collection.dimensions.itemWidth);
                 
-                // Apply mobile-specific behavior after gallery is initialized
-                if (collectionKey === 'aura') {
-                    disableMobileTouchForAura();
-                }
+                // Apply mobile-specific behavior after gallery is initialized for all collections
+                disableMobileTouchForAllCollections(collectionKey);
             }, 50);
         }
 
@@ -511,21 +593,33 @@
             // Initialize burger menu functionality
             initializeBurgerMenu();
             
+            // Initialize credits overlay functionality
+            initializeCreditsOverlay();
+            
             // Note: Mobile touch disabling for aura is now handled in loadCollection after gallery initialization
         });
 
-        // Function to disable card interactions but allow scrolling on mobile for aura collection
-        function disableMobileTouchForAura() {
+        // Function to disable card interactions but allow scrolling on mobile for all collections
+        function disableMobileTouchForAllCollections(collectionKey) {
             // Check if device is mobile/tablet
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
             
             if (isMobile) {
-                console.log('Applying mobile-specific aura settings');
+                console.log('Applying mobile-specific settings for', collectionKey);
                 
                 const creditsContainer = document.querySelector('.credits-container');
                 
                 if (creditsContainer) {
-                    creditsContainer.style.display = 'none !important';
+                    // Show credits for all collections on mobile
+                    creditsContainer.style.display = 'flex !important';
+                    
+                    // Enable pointer events for love, madeinFrance, and rugby collections (for "voir plus" functionality)
+                    if (collectionKey === 'love' || collectionKey === 'madeinFrance' || collectionKey === 'rugby') {
+                        creditsContainer.style.pointerEvents = 'auto !important';
+                    } else {
+                        // Disable pointer events for other collections (no interaction needed)
+                        creditsContainer.style.pointerEvents = 'none !important';
+                    }
                 }
                 
                 // Disable auto-scrolling mouse behavior for mobile
@@ -539,7 +633,7 @@
                     const track = newGallery.querySelector('.gallery-track');
                     const items = newGallery.querySelectorAll('.gallery-item-horizontal');
                     const originalItemsCount = items.length / 2;
-                    const itemWidth = 320; // aura collection item width
+                    const itemWidth = collections[collectionKey].dimensions.itemWidth;
                     
                     newGallery.addEventListener('scroll', () => {
                         const scrollLeft = newGallery.scrollLeft;
@@ -560,6 +654,11 @@
                     item.addEventListener('contextmenu', preventTouch, { passive: false });
                 });
             }
+        }
+
+        // Function to disable card interactions but allow scrolling on mobile for aura collection (kept for backward compatibility)
+        function disableMobileTouchForAura() {
+            disableMobileTouchForAllCollections('aura');
         }
 
         // Prevent context menu function (only for long press prevention)
@@ -585,6 +684,99 @@
             
             // Join with bullet separators for movie credits style
             return parts.join(' • ');
+        }
+
+        // Build inline credits string from structured data
+        function formatCreditsForScrollingStructured(creditsData) {
+            if (!Array.isArray(creditsData)) return '';
+            const parts = creditsData.map(entry => `${entry.role}: ${entry.people.join(', ')}`);
+            return parts.join(' • ');
+        }
+
+        // Inline credits (mobile truncation for specific collections)
+        function formatInlineCredits(collection, collectionKey) {
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+            // Prefer structured data if available
+            const fullText = Array.isArray(collection.creditsData) && collection.creditsData.length
+                ? formatCreditsForScrollingStructured(collection.creditsData)
+                : formatCreditsForScrolling(collection.credits || '');
+
+            // Desktop: always show full
+            if (!isMobile) return fullText;
+
+            // Mobile: only show truncation with overlay for love, madeinFrance, and rugby collections
+            if (collectionKey === 'love' || collectionKey === 'madeinFrance' || collectionKey === 'rugby') {
+                if (fullText.length > 50) {
+                    const truncatedText = fullText.substring(0, 47) + '...';
+                    return `<span class="credits-text">${truncatedText}</span><span class="voir-plus" onclick="showCreditsOverlay()">voir plus</span>`;
+                }
+            }
+            
+            // Mobile: show full credits for all other collections
+            return fullText;
+        }
+
+        // Show credits overlay
+        function showCreditsOverlay() {
+            const collectionKey = document.body.getAttribute('data-collection');
+            const collection = collections[collectionKey];
+            const overlayText = document.getElementById('creditsOverlayText');
+            
+            // If structured data exists, render a formatted list
+            if (collection && Array.isArray(collection.creditsData) && collection.creditsData.length) {
+                overlayText.innerHTML = renderCreditsListHtml(collection.creditsData);
+            } else {
+                // Fallback to plain text from original credits string
+                overlayText.innerHTML = formatCreditsForScrolling(collection.credits || '');
+            }
+            
+            const overlay = document.getElementById('creditsOverlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close credits overlay
+        function closeCreditsOverlay() {
+            console.log('Close credits overlay');
+            const overlay = document.getElementById('creditsOverlay');
+            overlay.classList.remove('active');
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        // Initialize credits overlay functionality
+        function initializeCreditsOverlay() {
+            const overlay = document.getElementById('creditsOverlay');
+            
+            // Close overlay when clicking on backdrop
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    closeCreditsOverlay();
+                }
+            });
+            
+            // Close overlay with escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    closeCreditsOverlay();
+                }
+            });
+        }
+
+        // Render HTML list for overlay from structured credits
+        function renderCreditsListHtml(creditsData) {
+            const rows = creditsData.map((entry, index) => {
+                const namesList = entry.people.map(person => `<div>${person}</div>`).join('');
+                const showDivider = index < creditsData.length - 1; // Don't show divider after last item
+                return `<li class="credit-row">
+                    <span class="credit-role">${entry.role}</span>
+                    <div class="credit-names">${namesList}</div>
+                    ${showDivider ? '<div class="credit-divider"></div>' : ''}
+                </li>`;
+            }).join('');
+            return `<ul class="credits-list">${rows}</ul>`;
         }
 
         // Helper function to clear scroll interval (if it exists)
